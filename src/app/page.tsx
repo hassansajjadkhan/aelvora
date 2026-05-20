@@ -1,65 +1,109 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import { LoadingScreen } from "@/components/LoadingScreen";
+import { Navbar } from "@/components/Navbar";
+import { NoiseOverlay } from "@/components/NoiseOverlay";
+import { HeroSection } from "@/sections/HeroSection";
+import { TrustSection } from "@/sections/TrustSection";
+import { PainPointsSection } from "@/sections/PainPointsSection";
+import { ServicesSection } from "@/sections/ServicesSection";
+import { ProcessSection } from "@/sections/ProcessSection";
+import { PortfolioSection } from "@/sections/PortfolioSection";
+import { TestimonialsSection } from "@/sections/TestimonialsSection";
+import { CalendlySection } from "@/sections/CalendlySection";
+import { Footer } from "@/components/Footer";
+
+/** Thin gradient line that visually separates sections */
+const SectionDivider = ({ flip = false }: { flip?: boolean }) => (
+  <div
+    style={{
+      width: "100%",
+      height: "1px",
+      background: flip
+        ? "linear-gradient(90deg, rgba(142,92,255,0.0) 0%, rgba(184,157,255,0.20) 30%, rgba(216,200,255,0.35) 50%, rgba(184,157,255,0.20) 70%, rgba(142,92,255,0.0) 100%)"
+        : "linear-gradient(90deg, rgba(142,92,255,0.0) 0%, rgba(142,92,255,0.35) 30%, rgba(184,157,255,0.50) 50%, rgba(142,92,255,0.35) 70%, rgba(142,92,255,0.0) 100%)",
+    }}
+  />
+);
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <>
+      <NoiseOverlay />
+      <LoadingScreen onComplete={() => setIsLoading(false)} />
+
+      {!isLoading && (
+        <>
+          <Navbar />
+          {/*
+            Sections alternate between two tones:
+            A = #080808  (pure near-black)
+            B = #07050f  (deep black with purple cast)
+          */}
+          <main
+            style={{
+              width: "100%",
+              background: "#080808",
+              marginLeft: "auto",
+              marginRight: "auto",
+              display: "flex",
+              flexDirection: "column",
+              gap: "80px",
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            {/* A */}
+            <HeroSection />
+            <SectionDivider />
+
+            {/* B */}
+            <div style={{ background: "#07050f" }}>
+              <TrustSection />
+            </div>
+            <SectionDivider flip />
+
+            {/* A */}
+            <div style={{ background: "#080808" }}>
+              <PainPointsSection />
+            </div>
+            <SectionDivider />
+
+            {/* B */}
+            <div style={{ background: "#07050f" }}>
+              <ServicesSection />
+            </div>
+            <SectionDivider />
+
+            {/* B */}
+            <div style={{ background: "#07050f" }}>
+              <ProcessSection />
+            </div>
+            <SectionDivider flip />
+
+            {/* A */}
+            <div style={{ background: "#080808" }}>
+              <PortfolioSection />
+            </div>
+            <SectionDivider />
+
+            {/* B */}
+            <div style={{ background: "#07050f" }}>
+              <TestimonialsSection />
+            </div>
+            <SectionDivider flip />
+
+            {/* A */}
+            <div style={{ background: "#080808" }}>
+              <CalendlySection />
+            </div>
+            <SectionDivider flip />
+
+            <Footer />
+          </main>
+        </>
+      )}
+    </>
   );
 }
