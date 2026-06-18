@@ -106,7 +106,7 @@ export const HeroSection = () => {
                 className="font-medium"
                 style={{ color: "#D8C8FF", fontSize: "0.875rem" }}
               >
-                Premium Digital Experiences
+                Launch your AI SaaS MVP in 21 days
               </span>
             </div>
           </motion.div>

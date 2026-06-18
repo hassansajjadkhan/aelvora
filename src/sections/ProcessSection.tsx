@@ -239,12 +239,55 @@ export const ProcessSection = () => {
                 lineHeight: 1.65,
                 color: "rgba(237,228,215,0.55)",
                 maxWidth: "380px",
-                marginBottom: "60px",
+                marginBottom: "28px",
               }}
             >
               A clear, collaborative process where you&apos;re involved at every
               milestone — no surprises, just results.
             </p>
+
+            {/* What we build */}
+            <p
+              className="font-bold uppercase"
+              style={{
+                fontSize: "0.72rem",
+                letterSpacing: "0.22em",
+                color: "#B89DFF",
+                marginBottom: "16px",
+              }}
+            >
+              What We Build
+            </p>
+            <div
+              className="flex flex-wrap justify-center"
+              style={{ gap: "10px", maxWidth: "400px", marginBottom: "56px" }}
+            >
+              {[
+                "AI Products",
+                "Websites",
+                "Web Apps",
+                "SaaS Platforms",
+                "MVPs",
+              ].map((item) => (
+                <span
+                  key={item}
+                  className="font-medium"
+                  style={{
+                    fontSize: "0.85rem",
+                    padding: "8px 16px",
+                    borderRadius: "999px",
+                    background:
+                      "linear-gradient(160deg, rgba(142,92,255,0.14) 0%, rgba(18,14,30,0.55) 100%)",
+                    border: "1px solid rgba(184,157,255,0.45)",
+                    color: "#EDE4D7",
+                    boxShadow: "0 0 12px rgba(142,92,255,0.3)",
+                  }}
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+
             <div style={{ maxWidth: "380px" }}>
               <HeaderWavePattern />
             </div>

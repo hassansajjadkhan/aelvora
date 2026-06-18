@@ -89,7 +89,7 @@ export const CTASection = () => {
             </a>
 
             <a
-              href="mailto:hello@aelvora.com"
+              href="mailto:aelvoraio@gmail.com"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-[#EDE4D7] transition-all duration-300 group"
               style={{
                 border: "1px solid rgba(184,157,255,0.35)",
@@ -104,7 +104,7 @@ export const CTASection = () => {
               }}
             >
               <Mail className="w-5 h-5" style={{ color: "#B89DFF" }} />
-              hello@aelvora.com
+              aelvoraio@gmail.com
             </a>
           </motion.div>
 

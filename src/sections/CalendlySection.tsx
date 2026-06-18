@@ -183,7 +183,7 @@ export const CalendlySection = () => {
               </button>
 
               <a
-                href="mailto:hello@aelvora.com"
+                href="mailto:aelvoraio@gmail.com"
                 className="inline-flex items-center font-semibold"
                 style={{
                   padding: "14px 22px",
@@ -212,7 +212,7 @@ export const CalendlySection = () => {
                 }}
               >
                 <Mail className="w-[18px] h-[18px]" style={{ color: "#B89DFF" }} />
-                hello@aelvora.com
+                aelvoraio@gmail.com
               </a>
             </div>
 
@@ -482,7 +482,7 @@ export const CalendlySection = () => {
                   Prefer Email?
                 </p>
                 <a
-                  href="mailto:hello@aelvora.com"
+                  href="mailto:aelvoraio@gmail.com"
                   className="font-display font-semibold"
                   style={{
                     fontSize: "1rem",
@@ -491,7 +491,7 @@ export const CalendlySection = () => {
                     lineHeight: 1.15,
                   }}
                 >
-                  hello@aelvora.com
+                  aelvoraio@gmail.com
                 </a>
                 <p
                   style={{

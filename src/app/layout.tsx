@@ -1,36 +1,79 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { LenisProvider } from "@/components/LenisProvider";
+import { StructuredData } from "@/components/StructuredData";
+import {
+  SITE_URL,
+  SITE_NAME,
+  SITE_TITLE_DEFAULT,
+  SITE_TITLE_TEMPLATE,
+  SITE_DESCRIPTION,
+  SITE_DESCRIPTION_SHORT,
+  SITE_KEYWORDS,
+  TWITTER_HANDLE,
+} from "@/lib/seo";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Aelvora | Premium Websites, AI Products & SaaS Development",
-  description:
-    "Aelvora builds high-quality websites, AI-powered products, SaaS platforms, and MVPs for ambitious companies. Cinematic digital experiences that convert.",
-  keywords:
-    "web development, AI integration, SaaS development, MVP, AI products, premium web design, Aelvora",
-  viewport: "width=device-width, initial-scale=1",
-  robots: "index, follow",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_TITLE_DEFAULT,
+    template: SITE_TITLE_TEMPLATE,
+  },
+  description: SITE_DESCRIPTION,
+  keywords: SITE_KEYWORDS,
+  applicationName: SITE_NAME,
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  category: "technology",
+  alternates: {
+    canonical: "/",
+  },
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
     type: "website",
-    url: "https://aelvora.com",
-    title: "Aelvora | Premium Websites, AI Products & SaaS Development",
-    description:
-      "High-quality websites, AI-powered products, and SaaS platforms for ambitious companies.",
-    images: [
-      {
-        url: "https://aelvora.com/og-image.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    locale: "en_US",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: SITE_TITLE_DEFAULT,
+    description: SITE_DESCRIPTION_SHORT,
+    // og:image is supplied by app/opengraph-image.tsx (file-based metadata).
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aelvora | Premium Websites, AI Products & SaaS Development",
-    description:
-      "High-quality websites, AI-powered products, and SaaS platforms for ambitious companies.",
-    images: ["https://aelvora.com/twitter-image.png"],
+    title: SITE_TITLE_DEFAULT,
+    description: SITE_DESCRIPTION_SHORT,
+    site: TWITTER_HANDLE,
+    creator: TWITTER_HANDLE,
+    // twitter:image is supplied by app/twitter-image.tsx.
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/logo.png",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#080808",
+  colorScheme: "dark",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -41,7 +84,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <meta name="theme-color" content="#080808" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         {/* Inter Font */}
@@ -56,6 +98,8 @@ export default function RootLayout({
         />
       </head>
       <body>
+        {/* Organization / WebSite / Service JSON-LD for SEO + AI search engines */}
+        <StructuredData />
         <LenisProvider>{children}</LenisProvider>
       </body>
     </html>

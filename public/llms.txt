@@ -1,0 +1,31 @@
+# Aelvora
+
+> Aelvora is an AI SaaS development agency that builds custom AI products, LLM-powered tools, SaaS platforms, and MVPs for ambitious founders and fast-growing companies. We ship production-grade software fast, with fixed-price engagements and post-launch support.
+
+Aelvora works with founders worldwide. Typical engagements: AI SaaS MVPs in 4–8 weeks, custom AI/LLM product development (RAG, vector search, fine-tuning, real-time inference), multi-tenant SaaS platforms with auth and billing, and premium high-performance web experiences. Default stack: Next.js, TypeScript, and modern cloud infrastructure. Contact: aelvoraio@gmail.com.
+
+## Services
+
+- **Custom SaaS Development**: End-to-end, multi-tenant SaaS platforms with authentication, billing, real-time dashboards, and API-first architecture built to scale with revenue.
+- **AI Product Development**: AI-powered products and tools using large language models, fine-tuned models, retrieval-augmented generation (RAG) pipelines, vector search, and real-time inference.
+- **MVP Development**: Rapid MVP development that turns an idea into a shippable, investor-ready product in weeks with a scalable codebase from day one.
+- **Premium Web Experiences**: High-performance marketing sites with 3D, motion, and micro-interactions engineered for Core Web Vitals and SEO.
+
+## Key pages
+
+- [Home](https://aelvora.com/): Overview of Aelvora's AI SaaS development services, process, portfolio, and testimonials.
+- [Contact](https://aelvora.com/contact): Send a project brief or book a free 30-minute strategy call.
+
+## FAQ
+
+- **What does an AI SaaS development agency do?** It designs, builds, and ships software-as-a-service products with AI at their core — Aelvora handles product strategy, UX, multi-tenant architecture, LLM/RAG integration, billing, deployment, and iteration so founders get a production-grade AI SaaS without an in-house team.
+- **How much does it cost to build an AI SaaS product?** Most AI SaaS MVPs land between $15,000 and $60,000, with fixed-price engagements and no surprise invoices.
+- **How long does it take to build an MVP?** A focused MVP typically ships in 4 to 8 weeks, in agile sprints with weekly demos.
+- **Which AI models and technologies do you use?** Leading LLMs (including Claude and GPT-class models), RAG pipelines with vector search, custom fine-tuned models, and real-time inference — built on Next.js and TypeScript.
+- **Do you work with non-technical founders?** Yes; most clients are non-technical founders, and Aelvora handles every engineering decision with plain-language updates.
+- **Do you provide support after launch?** Yes; every engagement includes post-launch support, monitoring, and iteration, with responses within 48 hours.
+
+## Contact
+
+- Email: aelvoraio@gmail.com
+- Website: https://aelvora.com

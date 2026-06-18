@@ -7,10 +7,11 @@ import { Button } from "@/components/Button";
 import Image from "next/image";
 
 const navLinks = [
-  { label: "Services", href: "#services" },
+  { label: "Services", href: "#process" },
   { label: "Work", href: "#portfolio" },
   { label: "Process", href: "#process" },
-  { label: "Contact", href: "#contact" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Contact", href: "#book" },
 ];
 
 const scrollTo = (href: string, onDone?: () => void) => {

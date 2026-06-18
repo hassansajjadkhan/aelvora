@@ -66,11 +66,12 @@ export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
               />
             </motion.div>
 
-            {/* Brand name */}
-            <motion.h1
+            {/* Brand name — intentionally NOT an <h1>; the hero owns the page H1 */}
+            <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
+              aria-hidden="true"
               style={{
                 fontSize: "24px",
                 fontFamily: "var(--font-display, 'Clash Display', sans-serif)",
@@ -81,7 +82,7 @@ export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
               }}
             >
               Aelvora
-            </motion.h1>
+            </motion.p>
 
             {/* Animated dots */}
             <div style={{ display: "flex", gap: "6px", justifyContent: "center" }}>

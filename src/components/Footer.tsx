@@ -6,16 +6,16 @@ import Image from "next/image";
 
 const footerLinks = {
   Services: [
-    { name: "SaaS Development", href: "#services" },
-    { name: "MVP Development", href: "#services" },
-    { name: "AI Tools", href: "#services" },
-    { name: "Web Design", href: "#services" },
+    { name: "SaaS Development", href: "#process" },
+    { name: "MVP Development", href: "#process" },
+    { name: "AI Tools", href: "#process" },
+    { name: "Web Design", href: "#process" },
   ],
   Company: [
     { name: "Portfolio", href: "#portfolio" },
     { name: "Process", href: "#process" },
-    { name: "Contact", href: "#book" },
-    { name: "Book a Call", href: "#book" },
+    { name: "FAQ", href: "#faq" },
+    { name: "Contact", href: "/contact" },
   ],
   Legal: [
     { name: "Privacy Policy", href: "/privacy" },
@@ -28,7 +28,7 @@ const socialLinks = [
   { icon: Share2, href: "https://twitter.com/aelvora", label: "Twitter" },
   { icon: ExternalLink, href: "https://linkedin.com/company/aelvora", label: "LinkedIn" },
   { icon: Code2, href: "https://github.com/aelvora", label: "GitHub" },
-  { icon: Mail, href: "mailto:hello@aelvora.com", label: "Email" },
+  { icon: Mail, href: "mailto:aelvoraio@gmail.com", label: "Email" },
 ];
 
 export const Footer = () => {
@@ -157,7 +157,7 @@ export const Footer = () => {
 
             {/* Get in touch CTA */}
             <a
-              href="mailto:hello@aelvora.com"
+              href="mailto:aelvoraio@gmail.com"
               className="inline-flex items-center font-semibold"
               style={{
                 gap: "10px",
@@ -190,7 +190,7 @@ export const Footer = () => {
                 className="w-[16px] h-[16px]"
                 style={{ color: "#B89DFF" }}
               />
-              hello@aelvora.com
+              aelvoraio@gmail.com
               <ArrowUpRight className="w-[14px] h-[14px]" />
             </a>
 
