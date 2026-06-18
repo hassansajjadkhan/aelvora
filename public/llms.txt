@@ -13,8 +13,8 @@ Aelvora works with founders worldwide. Typical engagements: AI SaaS MVPs in 4–
 
 ## Key pages
 
-- [Home](https://aelvora.com/): Overview of Aelvora's AI SaaS development services, process, portfolio, and testimonials.
-- [Contact](https://aelvora.com/contact): Send a project brief or book a free 30-minute strategy call.
+- [Home](https://aelvora.io/): Overview of Aelvora's AI SaaS development services, process, portfolio, and testimonials.
+- [Contact](https://aelvora.io/contact): Send a project brief or book a free 30-minute strategy call.
 
 ## FAQ
 
@@ -28,4 +28,4 @@ Aelvora works with founders worldwide. Typical engagements: AI SaaS MVPs in 4–
 ## Contact
 
 - Email: aelvoraio@gmail.com
-- Website: https://aelvora.com
+- Website: https://aelvora.io

@@ -7,7 +7,7 @@
  */
 
 /** Canonical production origin (no trailing slash). */
-export const SITE_URL = "https://aelvora.com";
+export const SITE_URL = "https://aelvora.io";
 
 export const SITE_NAME = "Aelvora";
 

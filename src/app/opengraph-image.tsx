@@ -93,7 +93,7 @@ export default function OpengraphImage() {
           }}
         >
           <div style={{ fontSize: 26, color: "rgba(184,157,255,0.85)" }}>
-            aelvora.com
+            aelvora.io
           </div>
           <div
             style={{
