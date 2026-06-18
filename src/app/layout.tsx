@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { LenisProvider } from "@/components/LenisProvider";
 import { StructuredData } from "@/components/StructuredData";
 import {
@@ -104,6 +105,20 @@ export default function RootLayout({
         {/* Organization / WebSite / Service JSON-LD for SEO + AI search engines */}
         <StructuredData />
         <LenisProvider>{children}</LenisProvider>
+
+        {/* Google Analytics (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-B7K4637NTX"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-B7K4637NTX');
+          `}
+        </Script>
       </body>
     </html>
   );
