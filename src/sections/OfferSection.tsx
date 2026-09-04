@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Check, X, ArrowRight } from "lucide-react";
-import { OwnerSupply } from "@/components/OwnerSupply";
 import {
   OFFER_NAME,
   OFFER_DAYS,
@@ -83,7 +82,7 @@ export const OfferSection = () => {
           {/* Headline row — name · days · price */}
           <div
             className="flex flex-wrap items-baseline"
-            style={{ gap: "12px 20px", marginBottom: "10px" }}
+            style={{ gap: "12px 20px", marginBottom: OFFER_PRICE ? "10px" : "36px" }}
           >
             <h2
               id="offer-heading"
@@ -123,8 +122,16 @@ export const OfferSection = () => {
             </span>
           </div>
 
-          <div style={{ marginBottom: "36px" }}>
-            {OFFER_PRICE ? (
+          {/*
+            No price set → render nothing here, rather than a marker.
+            An `[OWNER: supply]` block was live on production while outreach was
+            landing. The card still carries the scope, the exclusions and the
+            fixed-price guarantee, which is a coherent offer without a number;
+            a placeholder where the number belongs is not. Set OFFER_PRICE and
+            it appears here automatically.
+          */}
+          {OFFER_PRICE && (
+            <div style={{ marginBottom: "36px" }}>
               <p
                 className="font-display font-bold"
                 style={{
@@ -135,10 +142,8 @@ export const OfferSection = () => {
               >
                 {OFFER_PRICE}
               </p>
-            ) : (
-              <OwnerSupply what="fixed price for the 21-day MVP" block />
-            )}
-          </div>
+            </div>
+          )}
 
           {/* Two columns: included / not included */}
           <div

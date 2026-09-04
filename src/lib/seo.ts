@@ -76,14 +76,27 @@ export const SITE_KEYWORDS: string[] = [
   "Aelvora",
 ];
 
-/** Social / external profiles — emitted as schema.org `sameAs`. */
-export const SOCIAL_LINKS = {
+/**
+ * Social / external profiles — emitted as schema.org `sameAs`.
+ *
+ * `github` was `https://github.com/aelvora`, which returns **404** — the org
+ * does not exist. It had been live as a footer icon link and, worse, inside the
+ * Organization `sameAs` array, where a profile that 404s is an actively bad
+ * entity signal to search engines. Removed rather than repointed: the only real
+ * GitHub account is a personal one, and this is a company profile block.
+ *
+ * Set `github` to a real org URL once one exists and it returns everywhere.
+ */
+export const SOCIAL_LINKS: Record<string, string | null> = {
   twitter: "https://twitter.com/aelvora",
   linkedin: "https://linkedin.com/company/aelvora",
-  github: "https://github.com/aelvora",
+  github: null,
 };
 
-export const SAME_AS: string[] = Object.values(SOCIAL_LINKS);
+/** Only profiles that actually resolve belong in `sameAs`. */
+export const SAME_AS: string[] = Object.values(SOCIAL_LINKS).filter(
+  (url): url is string => url !== null
+);
 
 /** Twitter handle for twitter:site / twitter:creator. */
 export const TWITTER_HANDLE = "@aelvora";
@@ -121,9 +134,17 @@ export const HAS_PARTNER_CALENDLY = CALENDLY_PARTNER_SLUG !== null;
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * All `null` until supplied (spec §10, item 4). Nothing here is inferred from
- * the repo's git author or anywhere else — a founder bio is a claim about a
- * real person and must come from that person.
+ * OPTIONAL. Left `null` at the owner's explicit instruction — the section
+ * speaks as the studio rather than naming a person.
+ *
+ * Nothing here is inferred from the repo's git author or anywhere else: a
+ * founder bio is a claim about a real person and must come from that person.
+ *
+ * Filling `name` switches the "Who you're working with" section from the studio
+ * card to a personal one. That is the stronger version of the page — with the
+ * fabricated testimonials deleted, a named human with a track record is the
+ * most credible proof available to a studio principal or technical founder
+ * evaluating a vendor. Worth revisiting.
  */
 export const FOUNDER: {
   name: string | null;

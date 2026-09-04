@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { NoiseOverlay } from "@/components/NoiseOverlay";
-import { OwnerSupply } from "@/components/OwnerSupply";
 import {
   LEGAL_ENTITY,
   LEGAL_LAST_UPDATED,
@@ -139,8 +138,74 @@ const Block = ({ block }: { block: LegalBlock }) => {
         </div>
       );
 
-    case "owner":
-      return <OwnerSupply what={block.what} block />;
+    case "entity": {
+      // Real registered details once known; an honest "ask us" until then.
+      if (!LEGAL_ENTITY.name) {
+        return (
+          <p
+            style={{
+              fontSize: "1rem",
+              lineHeight: 1.8,
+              color: "rgba(237,228,215,0.72)",
+            }}
+          >
+            {block.fallback}
+          </p>
+        );
+      }
+      return (
+        <p
+          style={{
+            fontSize: "1rem",
+            lineHeight: 1.8,
+            color: "rgba(237,228,215,0.85)",
+          }}
+        >
+          <strong>{LEGAL_ENTITY.name}</strong>
+          {LEGAL_ENTITY.companyNumber && (
+            <>
+              <br />
+              Company number {LEGAL_ENTITY.companyNumber}
+            </>
+          )}
+          {LEGAL_ENTITY.address?.map((line) => (
+            <span key={line}>
+              <br />
+              {line}
+            </span>
+          ))}
+        </p>
+      );
+    }
+
+    case "jurisdiction":
+      return (
+        <p
+          style={{
+            fontSize: "1rem",
+            lineHeight: 1.8,
+            color: "rgba(237,228,215,0.72)",
+          }}
+        >
+          {LEGAL_ENTITY.jurisdiction ?? block.fallback}
+        </p>
+      );
+
+    case "registration":
+      // Nothing to say if there is no registration — say nothing.
+      if (!LEGAL_ENTITY.dataProtectionRegistration) return null;
+      return (
+        <p
+          style={{
+            fontSize: "1rem",
+            lineHeight: 1.8,
+            color: "rgba(237,228,215,0.72)",
+          }}
+        >
+          Our data protection registration number is{" "}
+          {LEGAL_ENTITY.dataProtectionRegistration}.
+        </p>
+      );
   }
 };
 

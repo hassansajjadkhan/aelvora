@@ -23,27 +23,36 @@ export const OFFER_PRICE: string | null = "$14,000";      // display string
 export const OFFER_PRICE_NUMERIC: number | null = 14000;  // for Offer schema
 ```
 
-Until set, `[OWNER: supply fixed price for the 21-day MVP]` renders on the
-homepage offer card **and** at the top of `/offer`. The `Offer` block is also
-omitted from the `/offer` Service schema, because an offer with no price fails
-Rich Results validation.
+No marker renders any more. While `OFFER_PRICE` is null the price line is
+simply omitted, the hero's secondary CTA reads "See what's included" instead of
+"See what it costs", and `/offer`'s opening paragraph promises a number back
+within 48 hours rather than claiming the page already shows one. The `Offer`
+block is also omitted from the `/offer` Service schema, because an offer with no
+price fails Rich Results validation.
 
-This is the single highest-priority item. Audit C3 — *no price anywhere* — is
-the reason `/offer` exists, and right now the page that exists to state a price
-doesn't state one.
+Still the highest-priority item. Audit C3 — *no price anywhere* — is the reason
+`/offer` exists, and the page that exists to state a price still doesn't state
+one. Everything above is damage limitation, not a fix.
 
-### The founder
+### The founder — optional, but the stronger page
 **File:** `src/lib/seo.ts` → `FOUNDER`
 
-Name, role, 3–4 sentence bio, photo, personal LinkedIn and GitHub. Five markers
-render in the homepage founder section until these land.
+**No longer blocking.** At your instruction the "Who you're working with"
+section speaks as the studio rather than naming a person, so there are no
+markers live. Every claim in it is one the site already stands behind: the work
+is the work shown above it, the ownership terms are the terms on `/offer`, and
+the stack is the stack in `offer.ts`. No number is claimed and no team size is
+implied.
 
-Put the photo in `public/` (e.g. `/images/founder.jpg`) and set `photo` and
-`photoAlt`. Square crop; it renders at 240px.
+Setting `FOUNDER.name` switches it to a personal card — photo, name, role, bio,
+real profile links. Worth revisiting: with the fabricated testimonials deleted
+there is **no third-party proof left on this site**, and a company describing
+itself is the weakest category of proof there is. A named person with a history
+is the strongest thing that can go in that slot for studio principals and
+technical founders who evaluate vendors for a living.
 
-With the invented testimonials deleted, **you are the proof**. An empty founder
-section on a page selling a 21-day build to technical buyers is the weakest
-thing on the site.
+If you do fill it: put the photo in `public/` (square crop, renders at 240px)
+and set `photo` and `photoAlt`.
 
 ---
 
@@ -120,6 +129,14 @@ page, and a case study made of placeholder markers is exactly that.
 
 Registered name, company number, registered address, governing jurisdiction, and
 ICO registration number if you have one.
+
+**Not blocking, and no markers render.** While these are null the pages say
+"Aelvora, contactable at hello@aelvora.io — full registered details available on
+request" and, for governing law, "the jurisdiction in which Aelvora is
+established… email us and we will confirm it in writing". Both are true as
+written for a business with no registered company, and both switch to the real
+details the moment you fill this in. If you *do* have a registered company, fill
+it in — naming it is stronger than deferring.
 
 `/privacy`, `/terms` and `/cookies` now exist and resolve — they used to 404
 from the footer of every page. **The factual content is accurate**: every

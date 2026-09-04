@@ -45,12 +45,20 @@ const footerLinks = {
   ],
 };
 
+/**
+ * Only profiles that exist get an icon. `github.com/aelvora` returned 404 and
+ * was rendering a dead link in the footer of every page — it is `null` in
+ * SOCIAL_LINKS now and filtered out here, and comes back automatically if a
+ * real org URL is set.
+ */
 const socialLinks = [
   { icon: Share2, href: SOCIAL_LINKS.twitter, label: "Twitter" },
   { icon: ExternalLink, href: SOCIAL_LINKS.linkedin, label: "LinkedIn" },
   { icon: Code2, href: SOCIAL_LINKS.github, label: "GitHub" },
   { icon: Mail, href: `mailto:${CONTACT_EMAIL}`, label: "Email" },
-];
+].filter((s): s is { icon: typeof Mail; href: string; label: string } =>
+  Boolean(s.href)
+);
 
 export const Footer = () => {
   const year = new Date().getFullYear();

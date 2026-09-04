@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
-import { OFFER_DAYS } from "@/lib/offer";
+import { OFFER_DAYS, OFFER_PRICE } from "@/lib/offer";
 
 const GlobeScene = dynamic(
   () => import("@/three/scene/GlobeScene").then((m) => m.GlobeScene),
@@ -196,7 +196,8 @@ export const HeroSection = () => {
                 (e.currentTarget as HTMLElement).style.background = "transparent";
               }}
             >
-              See what it costs
+              {/* Don't promise a cost the page can't show yet. */}
+              {OFFER_PRICE ? "See what it costs" : "See what's included"}
             </Link>
           </motion.div>
         </motion.div>

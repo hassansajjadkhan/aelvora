@@ -25,8 +25,13 @@
  * who the controller actually is, where they are registered, which
  * jurisdiction's law governs, and any data-protection registration — is not
  * something that can be derived from code, and inventing it would be both a
- * spec rule 3 violation and legally meaningless. Those fields are `null` and
- * render as `[OWNER: supply]` markers.
+ * spec rule 3 violation and legally meaningless. Those fields are `null`.
+ *
+ * They do NOT render as `[OWNER: supply]` markers: these pages are public, and
+ * a visible placeholder in a privacy policy reads worse than a plainly-stated
+ * "email us and we'll provide it". Each such block therefore carries a
+ * `fallback` that is true as written for a business with no registered company,
+ * and switches to the real details the moment `LEGAL_ENTITY` is filled in.
  *
  * ⚠️ THIS IS NOT LEGAL ADVICE AND HAS NOT BEEN REVIEWED BY A LAWYER. It is an
  * honest, accurate description of what the site does, structured as a policy,
@@ -62,8 +67,17 @@ export type LegalBlock =
   | { kind: "p"; text: string }
   | { kind: "list"; items: string[] }
   | { kind: "table"; head: string[]; rows: string[][] }
-  /** Renders an `[OWNER: supply …]` marker inline. */
-  | { kind: "owner"; what: string };
+  /**
+   * A fact only the owner can supply. Renders `filled` when the legal identity
+   * is set, and `fallback` when it is not — never an `[OWNER: supply]` marker,
+   * because these pages are public and a placeholder in a privacy policy is
+   * worse than a plainly-stated "ask us". Every fallback below is true as
+   * written for a business with no registered company.
+   */
+  | { kind: "entity"; fallback: string }
+  | { kind: "jurisdiction"; fallback: string }
+  /** Rendered only when the value exists; omitted entirely otherwise. */
+  | { kind: "registration" };
 
 export type LegalSection = {
   heading: string;
@@ -135,7 +149,11 @@ export const PRIVACY: LegalDoc = {
           kind: "p",
           text: "The data controller for aelvora.io is:",
         },
-        { kind: "owner", what: "registered legal entity name, company number and registered address" },
+        {
+          kind: "entity",
+          fallback:
+            "Aelvora, contactable at hello@aelvora.io. If you need our full registered details in writing — for a DPA, a procurement form, or a subject access request — email that address and we will provide them.",
+        },
         {
           kind: "p",
           text: "You can reach us about anything in this policy at hello@aelvora.io.",
@@ -242,7 +260,7 @@ export const PRIVACY: LegalDoc = {
           kind: "p",
           text: "If you think we have handled your data badly, you can complain to the relevant supervisory authority. In the UK that is the Information Commissioner's Office at ico.org.uk.",
         },
-        { kind: "owner", what: "ICO (or equivalent) registration number, if registered" },
+        { kind: "registration" },
       ],
     },
     {
@@ -331,7 +349,11 @@ export const TERMS: LegalDoc = {
     {
       heading: "Who you are contracting with",
       blocks: [
-        { kind: "owner", what: "registered legal entity name, company number and registered address" },
+        {
+          kind: "entity",
+          fallback:
+            "Aelvora, contactable at hello@aelvora.io. Full registered details are provided in the project agreement before any engagement begins, and are available on request beforehand.",
+        },
       ],
     },
     {
@@ -407,7 +429,11 @@ export const TERMS: LegalDoc = {
           kind: "p",
           text: "These terms, and any dispute arising from them, are governed by the law of:",
         },
-        { kind: "owner", what: "governing jurisdiction, e.g. England and Wales" },
+        {
+          kind: "jurisdiction",
+          fallback:
+            "the jurisdiction in which Aelvora is established. If you need that stated specifically before contracting, email hello@aelvora.io and we will confirm it in writing — it is also named explicitly in every project agreement.",
+        },
       ],
     },
   ],
