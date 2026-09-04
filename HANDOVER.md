@@ -4,16 +4,21 @@ Everything in the funnel spec is built. This is the list of real-world facts the
 code is waiting on, in the order they matter. Run `npm run check:owner` at any
 time to see what is still outstanding.
 
-Nothing below was guessed. Where a fact was needed and missing, the code renders
-a visible `[OWNER: supply …]` marker or leaves the feature gated — it was never
-filled with something plausible-sounding. That is what put fabricated
+Nothing below was guessed. Where a fact was needed and missing, the code either
+omits the element, degrades to something true, or gates the feature — it was
+never filled with something plausible-sounding. That is what put fabricated
 testimonials on the live site once already.
+
+**No `[OWNER: supply]` markers render on the site any more.** They did, on
+production, while outreach was landing — that is fixed. The gaps are still
+gaps, they just no longer announce themselves to your visitors.
 
 ---
 
-## 1. Blocking — these are visible on production right now
+## 1. Highest priority
 
-Outreach is live, so anyone who clicks a link in those three emails sees these.
+Outreach is live. None of these is visible as a placeholder any more, but each
+one still weakens the page a recipient lands on.
 
 ### The price
 **File:** `src/lib/offer.ts`
