@@ -3,32 +3,49 @@
 import { motion } from "framer-motion";
 import { Share2, ExternalLink, Code2, Mail, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { CONTACT_EMAIL, SOCIAL_LINKS } from "@/lib/seo";
+import { publishedCaseStudies } from "@/lib/case-studies";
 
+/**
+ * Footer links.
+ *
+ * Three changes from the version this replaces:
+ *
+ * 1. `/partners` is linked from every page (spec §5.5). Outreach recipients
+ *    arrive by direct link, but crawlers need a path to it too.
+ * 2. Hash hrefs are now root-relative (`/#faq`, not `#faq`). The bare form
+ *    resolved against whatever page you were on, so every one of them was dead
+ *    on `/contact`.
+ * 3. The Legal column is gone. `/privacy`, `/terms` and `/cookies` were linked
+ *    from every page and all three returned 404 — three broken internal links
+ *    site-wide, against the spec's own acceptance criteria. Writing real legal
+ *    copy is not something to invent, so the links are removed rather than
+ *    pointed at invented policies. See the handover notes: these pages need
+ *    writing, and the links should come back the moment they exist.
+ */
 const footerLinks = {
-  Services: [
-    { name: "SaaS Development", href: "#process" },
-    { name: "MVP Development", href: "#process" },
-    { name: "AI Tools", href: "#process" },
-    { name: "Web Design", href: "#process" },
+  Work: [
+    { name: "The offer", href: "/offer" },
+    { name: "For design studios", href: "/partners" },
+    { name: "Selected work", href: "/#portfolio" },
+    ...publishedCaseStudies()
+      .slice(0, 3)
+      .map((c) => ({ name: c.title, href: `/work/${c.slug}` })),
   ],
   Company: [
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Process", href: "#process" },
-    { name: "FAQ", href: "#faq" },
+    { name: "Process", href: "/#process" },
+    { name: "Is this for you?", href: "/#fit" },
+    { name: "FAQ", href: "/#faq" },
     { name: "Contact", href: "/contact" },
-  ],
-  Legal: [
-    { name: "Privacy Policy", href: "/privacy" },
-    { name: "Terms of Service", href: "/terms" },
-    { name: "Cookie Policy", href: "/cookies" },
   ],
 };
 
 const socialLinks = [
-  { icon: Share2, href: "https://twitter.com/aelvora", label: "Twitter" },
-  { icon: ExternalLink, href: "https://linkedin.com/company/aelvora", label: "LinkedIn" },
-  { icon: Code2, href: "https://github.com/aelvora", label: "GitHub" },
-  { icon: Mail, href: "mailto:aelvoraio@gmail.com", label: "Email" },
+  { icon: Share2, href: SOCIAL_LINKS.twitter, label: "Twitter" },
+  { icon: ExternalLink, href: SOCIAL_LINKS.linkedin, label: "LinkedIn" },
+  { icon: Code2, href: SOCIAL_LINKS.github, label: "GitHub" },
+  { icon: Mail, href: `mailto:${CONTACT_EMAIL}`, label: "Email" },
 ];
 
 export const Footer = () => {
@@ -83,7 +100,7 @@ export const Footer = () => {
       >
         {/* Top grid */}
         <div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:[grid-template-columns:minmax(0,1.6fr)_repeat(3,minmax(0,1fr))]"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:[grid-template-columns:minmax(0,1.8fr)_repeat(2,minmax(0,1fr))]"
           style={{
             gap: "48px",
             marginBottom: "56px",
@@ -151,13 +168,14 @@ export const Footer = () => {
                 marginBottom: "28px",
               }}
             >
-              Premium websites, AI products, and SaaS platforms for ambitious
-              founders worldwide. Cinematic builds that ship.
+              AI products and SaaS platforms for founders, and white-label build
+              capacity for design studios. Fixed price, fixed timeline, deployed
+              and yours.
             </p>
 
             {/* Get in touch CTA */}
             <a
-              href="mailto:aelvoraio@gmail.com"
+              href={`mailto:${CONTACT_EMAIL}`}
               className="inline-flex items-center font-semibold"
               style={{
                 gap: "10px",
@@ -190,7 +208,7 @@ export const Footer = () => {
                 className="w-[16px] h-[16px]"
                 style={{ color: "#B89DFF" }}
               />
-              aelvoraio@gmail.com
+              {CONTACT_EMAIL}
               <ArrowUpRight className="w-[14px] h-[14px]" />
             </a>
 
@@ -273,7 +291,7 @@ export const Footer = () => {
               >
                 {links.map((link) => (
                   <li key={link.name}>
-                    <a
+                    <Link
                       href={link.href}
                       style={{
                         fontSize: "0.92rem",
@@ -294,7 +312,7 @@ export const Footer = () => {
                       }}
                     >
                       {link.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

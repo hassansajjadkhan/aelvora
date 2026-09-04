@@ -6,83 +6,25 @@ import {
   Palette,
   Code2,
   Rocket,
-  ClipboardList,
-  Map,
-  Inbox,
-  Layers,
-  Globe,
-  Server,
   CheckCircle2,
-  BarChart3,
-  LineChart,
-  Clock,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { PROCESS_STEPS, OFFER_DAYS } from "@/lib/offer";
 
-type Deliverable = { label: string; icon: LucideIcon };
-type Step = {
-  number: string;
-  title: string;
-  duration: string;
-  icon: LucideIcon;
-  description: string;
-  deliverables: Deliverable[];
-};
+/**
+ * The process, stated in days.
+ *
+ * This section used to say Discovery weeks 1–2, Design weeks 2–4, Build weeks
+ * 4–12 while the hero promised a 21-day MVP — both visible in one scroll
+ * (audit C2). The windows now come from `PROCESS_STEPS` in `lib/offer.ts`, the
+ * same module the hero and the offer card read, so the two cannot drift apart
+ * again.
+ *
+ * The 01/02/03/04 numbering is kept: this is a genuine sequence, so the
+ * numbering encodes real information.
+ */
 
-const steps: Step[] = [
-  {
-    number: "01",
-    title: "Discovery",
-    duration: "Week 1–2",
-    icon: Search,
-    description:
-      "Deep research, sharp questions, and a clear technical brief. We map your users, study your competitors, and define exactly what to build.",
-    deliverables: [
-      { label: "Technical requirements", icon: ClipboardList },
-      { label: "User journey mapping", icon: Map },
-      { label: "Architecture proposal", icon: Inbox },
-    ],
-  },
-  {
-    number: "02",
-    title: "Design",
-    duration: "Week 2–4",
-    icon: Palette,
-    description:
-      "High-fidelity designs and interactive prototypes tailored to your brand. You see every detail before a line of code is written.",
-    deliverables: [
-      { label: "Design system", icon: Layers },
-      { label: "Interactive prototypes", icon: ClipboardList },
-      { label: "Web & guidelines", icon: Code2 },
-    ],
-  },
-  {
-    number: "03",
-    title: "Build",
-    duration: "Week 4–12",
-    icon: Code2,
-    description:
-      "Agile sprints with weekly demos. Production-grade code reviewed, tested, and optimized for speed — no black boxes.",
-    deliverables: [
-      { label: "Weekly progress demos", icon: BarChart3 },
-      { label: "Staging environment", icon: Server },
-      { label: "Automated test suite", icon: CheckCircle2 },
-    ],
-  },
-  {
-    number: "04",
-    title: "Launch",
-    duration: "Ongoing",
-    icon: Rocket,
-    description:
-      "Zero-downtime deployment, monitoring setup, and a 30-day support window. We don't disappear after shipping.",
-    deliverables: [
-      { label: "Production deployment", icon: Globe },
-      { label: "Analytics setup", icon: LineChart },
-      { label: "30-day support", icon: Clock },
-    ],
-  },
-];
+const stepIcons: LucideIcon[] = [Search, Palette, Code2, Rocket];
 
 /** Dotted wave pattern for the bottom-left of the header column */
 const HeaderWavePattern = () => {
@@ -144,6 +86,7 @@ export const ProcessSection = () => {
   return (
     <section
       id="process"
+      aria-labelledby="process-heading"
       className="pt-32 md:pt-44 lg:pt-52 pb-24 md:pb-32 lg:pb-36 relative overflow-hidden"
       style={{
         background: "transparent",
@@ -198,6 +141,7 @@ export const ProcessSection = () => {
               Our Process
             </span>
             <h2
+              id="process-heading"
               className="font-display font-bold"
               style={{
                 fontSize: "clamp(2.2rem, 3.6vw, 3.4rem)",
@@ -206,7 +150,7 @@ export const ProcessSection = () => {
                 marginBottom: "26px",
               }}
             >
-              How We Turn
+              {OFFER_DAYS} Days,
               <br />
               <span
                 style={{
@@ -217,9 +161,9 @@ export const ProcessSection = () => {
                   backgroundClip: "text",
                 }}
               >
-                Vision Into
+                Step By
                 <br />
-                Product
+                Step
               </span>
             </h2>
             <div
@@ -242,8 +186,9 @@ export const ProcessSection = () => {
                 marginBottom: "28px",
               }}
             >
-              A clear, collaborative process where you&apos;re involved at every
-              milestone — no surprises, just results.
+              Every window below is a real date, not an estimate. You sign off on
+              scope before anything is built, and you see something working every
+              three days after that.
             </p>
 
             {/* What we build */}
@@ -264,9 +209,9 @@ export const ProcessSection = () => {
             >
               {[
                 "AI Products",
-                "Websites",
-                "Web Apps",
+                "LLM & RAG Features",
                 "SaaS Platforms",
+                "Web Apps",
                 "MVPs",
               ].map((item) => (
                 <span
@@ -312,8 +257,8 @@ export const ProcessSection = () => {
               }}
             />
 
-            {steps.map((step, i) => {
-              const Icon = step.icon;
+            {PROCESS_STEPS.map((step, i) => {
+              const Icon = stepIcons[i] ?? Rocket;
               return (
                 <motion.div
                   key={step.number}
@@ -324,7 +269,7 @@ export const ProcessSection = () => {
                   className="relative flex"
                   style={{
                     gap: "26px",
-                    marginBottom: i === steps.length - 1 ? 0 : "24px",
+                    marginBottom: i === PROCESS_STEPS.length - 1 ? 0 : "24px",
                     alignItems: "center",
                   }}
                 >
@@ -398,11 +343,8 @@ export const ProcessSection = () => {
                       backdropFilter: "blur(14px)",
                     }}
                   >
-                    {/* Header row: icon + title + duration */}
-                    <div
-                      className="flex items-center"
-                      style={{ gap: "20px" }}
-                    >
+                    {/* Header row: icon + title + window */}
+                    <div className="flex items-center" style={{ gap: "20px" }}>
                       {/* Neon square icon */}
                       <div
                         className="flex items-center justify-center flex-shrink-0"
@@ -433,18 +375,16 @@ export const ProcessSection = () => {
                         className="flex-1 flex items-center justify-between"
                         style={{ gap: "14px" }}
                       >
-                        <div>
-                          <h3
-                            className="font-display font-bold"
-                            style={{
-                              fontSize: "1.25rem",
-                              color: "#EDE4D7",
-                              lineHeight: 1.15,
-                            }}
-                          >
-                            {step.title}
-                          </h3>
-                        </div>
+                        <h3
+                          className="font-display font-bold"
+                          style={{
+                            fontSize: "1.25rem",
+                            color: "#EDE4D7",
+                            lineHeight: 1.15,
+                          }}
+                        >
+                          {step.title}
+                        </h3>
                         <span
                           className="font-bold uppercase flex-shrink-0"
                           style={{
@@ -453,7 +393,7 @@ export const ProcessSection = () => {
                             color: "#B89DFF",
                           }}
                         >
-                          {step.duration}
+                          {step.window}
                         </span>
                       </div>
                     </div>
@@ -480,34 +420,30 @@ export const ProcessSection = () => {
                         gap: "8px",
                       }}
                     >
-                      {step.deliverables.map((d) => {
-                        const DIcon = d.icon;
-                        return (
-                          <span
-                            key={d.label}
-                            className="inline-flex items-center font-medium"
+                      {step.deliverables.map((label) => (
+                        <span
+                          key={label}
+                          className="inline-flex items-center font-medium"
+                          style={{
+                            fontSize: "0.78rem",
+                            padding: "7px 14px 7px 12px",
+                            gap: "8px",
+                            borderRadius: "999px",
+                            background: "rgba(142,92,255,0.12)",
+                            border: "1px solid rgba(142,92,255,0.35)",
+                            color: "#D8C8FF",
+                          }}
+                        >
+                          <CheckCircle2
+                            className="w-[14px] h-[14px]"
                             style={{
-                              fontSize: "0.78rem",
-                              padding: "7px 14px 7px 12px",
-                              gap: "8px",
-                              borderRadius: "999px",
-                              background: "rgba(142,92,255,0.12)",
-                              border: "1px solid rgba(142,92,255,0.35)",
-                              color: "#D8C8FF",
+                              color: "#B89DFF",
+                              filter: "drop-shadow(0 0 4px rgba(184,157,255,0.7))",
                             }}
-                          >
-                            <DIcon
-                              className="w-[14px] h-[14px]"
-                              style={{
-                                color: "#B89DFF",
-                                filter:
-                                  "drop-shadow(0 0 4px rgba(184,157,255,0.7))",
-                              }}
-                            />
-                            {d.label}
-                          </span>
-                        );
-                      })}
+                          />
+                          {label}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </motion.div>

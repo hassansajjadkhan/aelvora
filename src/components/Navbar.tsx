@@ -3,21 +3,25 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/Button";
 import Image from "next/image";
+import Link from "next/link";
 
+/**
+ * Nav links are real root-relative hrefs, not scroll-only buttons.
+ *
+ * They used to be `<button onClick={scrollIntoView}>` with bare hash targets,
+ * which meant they carried no crawlable href and did nothing at all on any page
+ * that wasn't the homepage. "Start a Project" pointed at `#contact` — an id that
+ * exists nowhere in the document — so the primary navbar CTA was dead on every
+ * page. Both are fixed here.
+ */
 const navLinks = [
-  { label: "Services", href: "#process" },
-  { label: "Work", href: "#portfolio" },
-  { label: "Process", href: "#process" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contact", href: "#book" },
+  { label: "Offer", href: "/offer" },
+  { label: "Work", href: "/#portfolio" },
+  { label: "Process", href: "/#process" },
+  { label: "For studios", href: "/partners" },
+  { label: "FAQ", href: "/#faq" },
 ];
-
-const scrollTo = (href: string, onDone?: () => void) => {
-  onDone?.();
-  document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-};
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -57,7 +61,7 @@ export const Navbar = () => {
           }}
         >
           {/* Logo — left */}
-          <a href="/" className="flex items-center gap-2.5 group" aria-label="Aelvora home">
+          <Link href="/" className="flex items-center gap-2.5 group" aria-label="Aelvora home">
             <div className="relative flex-shrink-0 w-9 h-9 group-hover:scale-105 transition-transform duration-300">
               <Image
                 src="/logo.png"
@@ -71,7 +75,7 @@ export const Navbar = () => {
             <span className="text-xl font-display font-bold text-[#EDE4D7] tracking-tight">
               Aelvora
             </span>
-          </a>
+          </Link>
 
           {/* Desktop nav links — absolutely centered */}
           <nav
@@ -86,17 +90,20 @@ export const Navbar = () => {
             }}
           >
             {navLinks.map((link, i) => (
-              <motion.button
+              <motion.div
                 key={link.label}
                 initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 + i * 0.06, duration: 0.5 }}
-                onClick={() => scrollTo(link.href)}
-                className="relative text-sm font-medium text-[#EDE4D7]/75 hover:text-[#EDE4D7] transition-colors duration-200 group py-2"
               >
-                {link.label}
-                <span className="absolute bottom-0 left-0 h-px w-0 bg-[#8E5CFF] group-hover:w-full transition-all duration-300 ease-out" />
-              </motion.button>
+                <Link
+                  href={link.href}
+                  className="relative block text-sm font-medium text-[#EDE4D7]/75 hover:text-[#EDE4D7] transition-colors duration-200 group py-2"
+                >
+                  {link.label}
+                  <span className="absolute bottom-0 left-0 h-px w-0 bg-[#8E5CFF] group-hover:w-full transition-all duration-300 ease-out" />
+                </Link>
+              </motion.div>
             ))}
           </nav>
 
@@ -105,11 +112,11 @@ export const Navbar = () => {
             className="flex items-center"
             style={{ marginLeft: "auto", gap: "16px" }}
           >
-            <motion.button
+            <motion.a
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.35, duration: 0.5 }}
-              onClick={() => scrollTo("#contact")}
+              href="/#book"
               data-cursor-magnetic
               className="hidden md:inline-flex items-center justify-center font-semibold uppercase"
               style={{
@@ -141,7 +148,7 @@ export const Navbar = () => {
               }}
             >
               Start a Project
-            </motion.button>
+            </motion.a>
 
             <button
               onClick={() => setMenuOpen((v) => !v)}
@@ -188,16 +195,20 @@ export const Navbar = () => {
             className="fixed inset-0 z-40 bg-[#080808]/97 backdrop-blur-xl flex flex-col items-center justify-center gap-6 md:hidden"
           >
             {navLinks.map((link, i) => (
-              <motion.button
+              <motion.div
                 key={link.label}
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 + i * 0.08, duration: 0.5 }}
-                onClick={() => scrollTo(link.href, () => setMenuOpen(false))}
-                className="text-4xl font-display font-bold text-[#EDE4D7]/80 hover:text-[#8E5CFF] transition-colors duration-200"
               >
-                {link.label}
-              </motion.button>
+                <Link
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-3xl font-display font-bold text-[#EDE4D7]/80 hover:text-[#8E5CFF] transition-colors duration-200"
+                >
+                  {link.label}
+                </Link>
+              </motion.div>
             ))}
 
             <motion.div
@@ -206,13 +217,21 @@ export const Navbar = () => {
               transition={{ delay: 0.42, duration: 0.4 }}
               className="mt-6"
             >
-              <Button
-                size="lg"
-                variant="primary"
-                onClick={() => scrollTo("#contact", () => setMenuOpen(false))}
+              <Link
+                href="/#book"
+                onClick={() => setMenuOpen(false)}
+                className="inline-flex items-center justify-center font-semibold uppercase"
+                style={{
+                  fontSize: "0.85rem",
+                  letterSpacing: "0.18em",
+                  padding: "14px 28px",
+                  borderRadius: "10px",
+                  color: "#0a0a0a",
+                  background: "linear-gradient(135deg, #8E5CFF, #B89DFF)",
+                }}
               >
                 Start a Project
-              </Button>
+              </Link>
             </motion.div>
           </motion.div>
         )}

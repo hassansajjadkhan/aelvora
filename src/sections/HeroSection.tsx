@@ -1,20 +1,15 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Hexagon, Disc, Activity } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
+import { OFFER_DAYS } from "@/lib/offer";
 
 const GlobeScene = dynamic(
   () => import("@/three/scene/GlobeScene").then((m) => m.GlobeScene),
   { ssr: false }
 );
-
-const trustedLogos = [
-  { icon: Hexagon, name: "Acme" },
-  { icon: Disc, name: "Echo" },
-  { icon: Sparkles, name: "Nova" },
-  { icon: Activity, name: "Pulse" },
-];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -25,6 +20,12 @@ const fadeUp = {
   },
 };
 
+/**
+ * The hero now states the same timeline the process section does (audit C2),
+ * and the "Trusted by ambitious teams" row of invented companies — Acme, Echo,
+ * Nova, Pulse — is gone (audit C1). The secondary CTA is a real crawlable link
+ * to /offer, not a scroll button, so a price is one click from the fold.
+ */
 export const HeroSection = () => {
   return (
     <section
@@ -72,7 +73,7 @@ export const HeroSection = () => {
         style={{
           minHeight: "100vh",
           width: "100%",
-          paddingLeft: "clamp(32px, 9vw, 160px)",
+          paddingLeft: "clamp(24px, 9vw, 160px)",
           paddingRight: "clamp(24px, 4vw, 64px)",
         }}
       >
@@ -89,7 +90,7 @@ export const HeroSection = () => {
             paddingBottom: "140px",
           }}
         >
-          {/* Badge */}
+          {/* Eyebrow */}
           <motion.div variants={fadeUp} style={{ marginBottom: "36px" }}>
             <div
               className="inline-flex items-center gap-2"
@@ -106,7 +107,7 @@ export const HeroSection = () => {
                 className="font-medium"
                 style={{ color: "#D8C8FF", fontSize: "0.875rem" }}
               >
-                Launch your AI SaaS MVP in 21 days
+                AI product development
               </span>
             </div>
           </motion.div>
@@ -122,11 +123,9 @@ export const HeroSection = () => {
               marginBottom: "32px",
             }}
           >
-            We build <span style={{ color: "#9D6BFF" }}>digital</span>
-            <br />
-            products that drive
-            <br />
-            <span style={{ color: "#9D6BFF" }}>real business growth.</span>
+            We build your AI product&apos;s{" "}
+            <span style={{ color: "#9D6BFF" }}>first working version</span> in{" "}
+            <span style={{ color: "#9D6BFF" }}>{OFFER_DAYS} days.</span>
           </motion.h1>
 
           {/* Subheading */}
@@ -140,15 +139,16 @@ export const HeroSection = () => {
               marginBottom: "44px",
             }}
           >
-            Custom SaaS platforms, AI tools, and premium web experiences for
-            ambitious founders and forward-thinking companies.
+            For founders who need something real in front of users, investors, or
+            customers — not another deck. Fixed price, fixed timeline, deployed
+            and yours.
           </motion.p>
 
           {/* CTA buttons */}
           <motion.div
             variants={fadeUp}
             className="flex flex-wrap items-center"
-            style={{ gap: "16px", marginBottom: "64px" }}
+            style={{ gap: "16px" }}
           >
             <button
               onClick={() =>
@@ -171,16 +171,12 @@ export const HeroSection = () => {
                 (e.currentTarget as HTMLElement).style.boxShadow = "none";
               }}
             >
-              Book a Strategy Call
+              Book a call
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
 
-            <button
-              onClick={() =>
-                document
-                  .querySelector("#portfolio")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
+            <Link
+              href="/offer"
               className="inline-flex items-center font-semibold transition-all duration-300"
               style={{
                 padding: "16px 28px",
@@ -200,45 +196,8 @@ export const HeroSection = () => {
                 (e.currentTarget as HTMLElement).style.background = "transparent";
               }}
             >
-              View Our Work
-            </button>
-          </motion.div>
-
-          {/* Trusted by */}
-          <motion.div variants={fadeUp}>
-            <p
-              className="font-semibold uppercase"
-              style={{
-                fontSize: "0.75rem",
-                letterSpacing: "0.2em",
-                color: "rgba(184,157,255,0.45)",
-                marginBottom: "24px",
-              }}
-            >
-              Trusted by ambitious teams
-            </p>
-            <div
-              className="flex flex-wrap items-center"
-              style={{ gap: "32px" }}
-            >
-              {trustedLogos.map(({ icon: Icon, name }) => (
-                <div key={name} className="flex items-center gap-2">
-                  <Icon
-                    className="w-5 h-5"
-                    style={{ color: "rgba(237,228,215,0.4)" }}
-                  />
-                  <span
-                    className="font-display font-bold"
-                    style={{
-                      color: "rgba(237,228,215,0.4)",
-                      fontSize: "1.125rem",
-                    }}
-                  >
-                    {name}
-                  </span>
-                </div>
-              ))}
-            </div>
+              See what it costs
+            </Link>
           </motion.div>
         </motion.div>
       </div>

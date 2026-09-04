@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Calendar,
@@ -12,9 +13,11 @@ import {
   Lock,
   Send,
 } from "lucide-react";
+import { ProjectForm } from "@/components/ProjectForm";
+import { listenForCalendlyBooking } from "@/lib/analytics";
+import { CALENDLY_FOUNDER_URL, CONTACT_EMAIL } from "@/lib/seo";
 
-const CALENDLY_URL =
-  "https://calendly.com/aelvoraio/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=1a1426&text_color=EDE4D7&primary_color=8E5CFF";
+const CALENDLY_URL = CALENDLY_FOUNDER_URL;
 
 const stats = [
   { icon: Clock, big: "48H", label: "Response Guarantee" },
@@ -30,6 +33,10 @@ const perks = [
 ];
 
 export const CalendlySection = () => {
+  // A booking is a booking — an outbound click is not. Calendly posts
+  // `calendly.event_scheduled` when the visitor actually completes one.
+  useEffect(() => listenForCalendlyBooking("founder"), []);
+
   return (
     <section
       id="book"
@@ -148,8 +155,8 @@ export const CalendlySection = () => {
               <button
                 onClick={() =>
                   document
-                    .querySelector("#book")
-                    ?.scrollIntoView({ behavior: "smooth" })
+                    .querySelector("#calendly-embed")
+                    ?.scrollIntoView({ behavior: "smooth", block: "center" })
                 }
                 className="group inline-flex items-center font-semibold"
                 style={{
@@ -183,7 +190,7 @@ export const CalendlySection = () => {
               </button>
 
               <a
-                href="mailto:aelvoraio@gmail.com"
+                href={`mailto:${CONTACT_EMAIL}`}
                 className="inline-flex items-center font-semibold"
                 style={{
                   padding: "14px 22px",
@@ -212,7 +219,7 @@ export const CalendlySection = () => {
                 }}
               >
                 <Mail className="w-[18px] h-[18px]" style={{ color: "#B89DFF" }} />
-                aelvoraio@gmail.com
+                {CONTACT_EMAIL}
               </a>
             </div>
 
@@ -404,6 +411,7 @@ export const CalendlySection = () => {
           >
             {/* Glass-framed iframe */}
             <div
+              id="calendly-embed"
               style={{
                 lineHeight: 0,
                 borderRadius: "22px",
@@ -431,6 +439,14 @@ export const CalendlySection = () => {
                   maxWidth: "100%",
                 }}
               />
+            </div>
+
+            {/*
+              Second conversion path (audit M2). Calendly used to be the only
+              one; everyone not ready to book left with nowhere to go.
+            */}
+            <div style={{ width: "100%", maxWidth: "420px" }}>
+              <ProjectForm funnelTrack="founder" />
             </div>
 
             {/* Prefer email card — under the calendar */}
@@ -482,7 +498,7 @@ export const CalendlySection = () => {
                   Prefer Email?
                 </p>
                 <a
-                  href="mailto:aelvoraio@gmail.com"
+                  href={`mailto:${CONTACT_EMAIL}`}
                   className="font-display font-semibold"
                   style={{
                     fontSize: "1rem",
@@ -491,7 +507,7 @@ export const CalendlySection = () => {
                     lineHeight: 1.15,
                   }}
                 >
-                  aelvoraio@gmail.com
+                  {CONTACT_EMAIL}
                 </a>
                 <p
                   style={{

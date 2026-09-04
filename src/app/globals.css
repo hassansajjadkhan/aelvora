@@ -169,3 +169,49 @@ button, a, input, textarea, select {
 .shadow-glow-lilac {
   box-shadow: 0 0 30px rgba(216, 200, 255, 0.2);
 }
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Quality floor (spec §6): visible keyboard focus, reduced motion honoured.
+   No new colour is introduced — focus uses the existing lilac accent.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* `button, a, input, textarea, select { transition: all }` above animates the
+   outline too, which makes focus arrive late and look soft. Exclude it. */
+:focus-visible {
+  outline: 2px solid var(--color-soft-lilac);
+  outline-offset: 3px;
+  border-radius: 4px;
+  transition: none;
+}
+
+/* Never suppress focus without replacing it. */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  /* Framer Motion reveals, the logo marquee, the trust waves, the grain
+     overlay and the scroll indicator all collapse to their end state rather
+     than animating. `1ms` rather than `0s` so animation-end events still fire
+     and nothing waits forever on a callback. */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-marquee,
+  .animate-marquee-reverse,
+  .trust-wave-1,
+  .trust-wave-2,
+  .trust-wave-line {
+    animation: none !important;
+  }
+}

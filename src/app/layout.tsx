@@ -9,7 +9,6 @@ import {
   SITE_TITLE_TEMPLATE,
   SITE_DESCRIPTION,
   SITE_DESCRIPTION_SHORT,
-  SITE_KEYWORDS,
   TWITTER_HANDLE,
 } from "@/lib/seo";
 import "./globals.css";
@@ -21,7 +20,11 @@ export const metadata: Metadata = {
     template: SITE_TITLE_TEMPLATE,
   },
   description: SITE_DESCRIPTION,
-  keywords: SITE_KEYWORDS,
+  // `keywords` deliberately omitted (spec §2.3). The meta-keywords tag has been
+  // ignored by every major search engine for well over a decade, and eighteen
+  // stuffed terms read as a spam signal to any human reviewer. The keyword set
+  // survives as schema.org `knowsAbout` in StructuredData, where an entity-topic
+  // list still carries meaning.
   applicationName: SITE_NAME,
   authors: [{ name: SITE_NAME, url: SITE_URL }],
   creator: SITE_NAME,
