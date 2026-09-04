@@ -1,31 +1,63 @@
 # Aelvora
 
-> Aelvora is an AI SaaS development agency that builds custom AI products, LLM-powered tools, SaaS platforms, and MVPs for ambitious founders and fast-growing companies. We ship production-grade software fast, with fixed-price engagements and post-launch support.
+> Aelvora builds AI products and SaaS platforms. The core offering is productized: an AI product MVP, deployed and handed over in 21 days, at a fixed price. Aelvora also provides white-label build capacity for brand and identity design studios whose clients need software.
 
-Aelvora works with founders worldwide. Typical engagements: AI SaaS MVPs in 4–8 weeks, custom AI/LLM product development (RAG, vector search, fine-tuning, real-time inference), multi-tenant SaaS platforms with auth and billing, and premium high-performance web experiences. Default stack: Next.js, TypeScript, and modern cloud infrastructure. Contact: aelvoraio@gmail.com.
+Aelvora works with two audiences. Founders who need a real, working AI product in front of users, investors, or customers — not a prototype and not a deck. And independent design studios who sell more work than they can build, and need a development partner who stays invisible to their client. Default stack: Next.js, TypeScript, Supabase, OpenAI, LangChain, Vercel. Contact: hello@aelvora.io.
+
+## The 21-day AI product MVP
+
+Fixed price, fixed timeline. If the build goes over 21 days, the client does not pay more.
+
+Included: a deployed working application on the client's domain; full source code in the client's own repository with no lock-in; authentication and user accounts; one AI feature running in production (LLM, RAG, or agent); payments and billing integration; 30 days of post-launch support.
+
+Explicitly not included: SOC 2 or HIPAA compliance work; native mobile apps; ongoing feature development, which is a separate retainer.
+
+Process, in days: Scope on days 1–3 (technical brief, user flows, architecture decision, signed off before anything is built). Design on days 4–7 (a clickable prototype of the core flow, not a mockup). Build on days 8–18 (a working demo every three days, staging from day 8). Launch on days 19–21 (production deploy, analytics, handover).
+
+Payment terms: 40% on signing, 40% at the start of build, 20% on production deploy and handover.
+
+## White-label development for design studios
+
+For brand and identity studios, typically 2–20 people, who design for clients whose actual product is software. The studio designs the brand; someone still has to build the product.
+
+How it works: delivered white-label under the studio's brand; the studio owns the client relationship entirely; fixed price, with the studio setting its own margin on top; a demo every three days so the studio always knows what to tell their client.
+
+Non-compete commitment: Aelvora never contacts a partner studio's client — not during the project, not after it, for any reason. No pitch, no follow-up, no named case study without written permission. This is in the contract.
+
+What gets built for studios: authentication and user accounts; admin dashboards and client portals; backends and APIs behind an existing design; AI and LLM features; third-party integrations; migrations off no-code platforms that have hit a ceiling. Designs are built faithfully from Figma — Aelvora does not redesign a studio's work.
+
+Engagement flow: the studio sends a brief; Aelvora scopes and quotes within 48 hours; the studio quotes their client; Aelvora builds with demos every three days; Aelvora hands over and the studio delivers.
 
 ## Services
 
-- **Custom SaaS Development**: End-to-end, multi-tenant SaaS platforms with authentication, billing, real-time dashboards, and API-first architecture built to scale with revenue.
-- **AI Product Development**: AI-powered products and tools using large language models, fine-tuned models, retrieval-augmented generation (RAG) pipelines, vector search, and real-time inference.
-- **MVP Development**: Rapid MVP development that turns an idea into a shippable, investor-ready product in weeks with a scalable codebase from day one.
+- **AI Product MVP (21 days)**: A fixed-price, fixed-timeline build — a deployed AI product with authentication, billing, and one AI feature in production, with full source code handover and 30 days of support.
+- **AI Product Development**: AI-powered products using LLMs, fine-tuned models, retrieval-augmented generation (RAG) pipelines, vector search, and real-time inference.
+- **Custom SaaS Development**: Multi-tenant SaaS platforms with authentication, billing, real-time dashboards, and API-first architecture.
+- **White-Label Development for Design Studios**: Build capacity delivered under a studio's brand, with a standing commitment never to contact the studio's client.
 - **Premium Web Experiences**: High-performance marketing sites with 3D, motion, and micro-interactions engineered for Core Web Vitals and SEO.
 
 ## Key pages
 
-- [Home](https://aelvora.io/): Overview of Aelvora's AI SaaS development services, process, portfolio, and testimonials.
-- [Contact](https://aelvora.io/contact): Send a project brief or book a free 30-minute strategy call.
+- [Home](https://aelvora.io/): The 21-day AI product MVP, the offer, selected work, process in days, fit criteria, and FAQ.
+- [The offer](https://aelvora.io/offer): Full scope in and out, deliverables by window, payment terms, what happens when scope changes mid-build, and an engagement FAQ.
+- [For design studios](https://aelvora.io/partners): White-label build capacity, the non-compete commitment, what gets built, and how an engagement runs.
+- [Contact](https://aelvora.io/contact): Send a project brief or book a call.
+- [Privacy Policy](https://aelvora.io/privacy), [Terms of Service](https://aelvora.io/terms), [Cookie Policy](https://aelvora.io/cookies)
 
 ## FAQ
 
 - **What does an AI SaaS development agency do?** It designs, builds, and ships software-as-a-service products with AI at their core — Aelvora handles product strategy, UX, multi-tenant architecture, LLM/RAG integration, billing, deployment, and iteration so founders get a production-grade AI SaaS without an in-house team.
-- **How much does it cost to build an AI SaaS product?** Most AI SaaS MVPs land between $15,000 and $60,000, with fixed-price engagements and no surprise invoices.
-- **How long does it take to build an MVP?** A focused MVP typically ships in 4 to 8 weeks, in agile sprints with weekly demos.
-- **Which AI models and technologies do you use?** Leading LLMs (including Claude and GPT-class models), RAG pipelines with vector search, custom fine-tuned models, and real-time inference — built on Next.js and TypeScript.
-- **Do you work with non-technical founders?** Yes; most clients are non-technical founders, and Aelvora handles every engineering decision with plain-language updates.
-- **Do you provide support after launch?** Yes; every engagement includes post-launch support, monitoring, and iteration, with responses within 48 hours.
+- **How much does it cost to build an AI SaaS product?** The productized 21-day AI product MVP is a single fixed price, published in full on the offer page. Larger custom builds are scoped separately and typically land between $15,000 and $60,000.
+- **How long does it take to build an MVP?** 21 days for the productized MVP: scope days 1–3, clickable prototype by day 7, build with a demo every three days from day 8, production deploy days 19–21.
+- **Which AI models and technologies do you use?** Leading LLMs (including Claude and GPT-class models), RAG pipelines with vector search, custom fine-tuned models, and real-time inference — on Next.js, TypeScript, Supabase, and Vercel, with OpenAI and LangChain for the AI layer.
+- **Do you work with non-technical founders?** Yes; most clients are non-technical. Aelvora translates the vision into a technical brief signed off in the first three days and delivers a working demo every three days in plain language.
+- **Do you provide support after launch?** Yes; 30 days of post-launch support and monitoring after handover, with the option of an ongoing retainer.
+- **What happens if 21 days isn't enough?** The client does not pay more. The price is fixed to the agreed scope, not the calendar, so an overrun is Aelvora's cost to absorb.
+- **Who owns the code?** The client does, completely. Work happens in the client's repository under their account. No license, no hosting lock-in, no proprietary framework.
+- **How do you work across timezones?** Async by default, with a working demo every three days rather than status meetings, plus a written, agreed overlap window for live decisions.
+- **What happens on day 22?** The product is deployed on the client's domain, the code is in their repository, analytics are running, and the 30-day support window has started.
 
 ## Contact
 
-- Email: aelvoraio@gmail.com
+- Email: hello@aelvora.io
 - Website: https://aelvora.io

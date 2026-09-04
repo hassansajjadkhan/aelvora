@@ -102,7 +102,6 @@ export const track = (event: EventName, props: Props = {}) => {
   window.posthog?.capture?.(event, payload);
 
   if (process.env.NODE_ENV === "development") {
-    // eslint-disable-next-line no-console
     console.info("[analytics]", event, payload);
   }
 };
