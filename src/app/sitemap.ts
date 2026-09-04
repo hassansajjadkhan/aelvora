@@ -45,5 +45,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    // Legal pages: indexable, low priority. They exist so the footer links
+    // resolve — all three used to 404 on every page.
+    ...(["privacy", "terms", "cookies"] as const).map((slug) => ({
+      url: `${SITE_URL}/${slug}`,
+      lastModified,
+      changeFrequency: "yearly" as const,
+      priority: 0.2,
+    })),
   ];
 }

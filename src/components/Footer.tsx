@@ -17,12 +17,11 @@ import { publishedCaseStudies } from "@/lib/case-studies";
  * 2. Hash hrefs are now root-relative (`/#faq`, not `#faq`). The bare form
  *    resolved against whatever page you were on, so every one of them was dead
  *    on `/contact`.
- * 3. The Legal column is gone. `/privacy`, `/terms` and `/cookies` were linked
- *    from every page and all three returned 404 — three broken internal links
- *    site-wide, against the spec's own acceptance criteria. Writing real legal
- *    copy is not something to invent, so the links are removed rather than
- *    pointed at invented policies. See the handover notes: these pages need
- *    writing, and the links should come back the moment they exist.
+ * 3. The Legal column is restored and now resolves. `/privacy`, `/terms` and
+ *    `/cookies` were linked from every page and all three returned 404 — three
+ *    broken internal links site-wide. The pages now exist and describe what
+ *    this site actually does; see `lib/legal.ts` for what is factual and what
+ *    still needs the owner's legal identity.
  */
 const footerLinks = {
   Work: [
@@ -38,6 +37,11 @@ const footerLinks = {
     { name: "Is this for you?", href: "/#fit" },
     { name: "FAQ", href: "/#faq" },
     { name: "Contact", href: "/contact" },
+  ],
+  Legal: [
+    { name: "Privacy Policy", href: "/privacy" },
+    { name: "Terms of Service", href: "/terms" },
+    { name: "Cookie Policy", href: "/cookies" },
   ],
 };
 
@@ -100,7 +104,7 @@ export const Footer = () => {
       >
         {/* Top grid */}
         <div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:[grid-template-columns:minmax(0,1.8fr)_repeat(2,minmax(0,1fr))]"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:[grid-template-columns:minmax(0,1.6fr)_repeat(3,minmax(0,1fr))]"
           style={{
             gap: "48px",
             marginBottom: "56px",
