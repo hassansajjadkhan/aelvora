@@ -4,10 +4,12 @@ import { LoadingScreen } from "@/components/LoadingScreen";
 import { Navbar } from "@/components/Navbar";
 import { NoiseOverlay } from "@/components/NoiseOverlay";
 import { HeroSection } from "@/sections/HeroSection";
-import { TrustSection } from "@/sections/TrustSection";
-import { ProcessSection } from "@/sections/ProcessSection";
+import { StackSection } from "@/sections/StackSection";
+import { OfferSection } from "@/sections/OfferSection";
 import { PortfolioSection } from "@/sections/PortfolioSection";
-import { TestimonialsSection } from "@/sections/TestimonialsSection";
+import { ProcessSection } from "@/sections/ProcessSection";
+import { FitSection } from "@/sections/FitSection";
+import { FounderSection } from "@/sections/FounderSection";
 import { FAQSection } from "@/sections/FAQSection";
 import { CalendlySection } from "@/sections/CalendlySection";
 import { Footer } from "@/components/Footer";
@@ -27,9 +29,18 @@ const SectionDivider = ({ flip = false }: { flip?: boolean }) => (
 );
 
 /**
- * The interactive homepage. Content is always rendered (and therefore
- * server-rendered into the initial HTML for crawlers and AI engines); the
- * LoadingScreen is a self-dismissing overlay on top, not a gate.
+ * The homepage — Track A, founders (spec §5.1).
+ *
+ * Section order follows spec §5.2. Gone from this page: the six fabricated
+ * testimonials, both placeholder client-logo rows, and the unverifiable stat
+ * block (`100% Satisfaction`, `4.9★`) — audit C1 and H1, DECISION-1 default.
+ *
+ * New: the offer card, fit / not-fit, and the founder section. The founder is
+ * the proof now that the invented testimonials are gone.
+ *
+ * Content is always rendered (and therefore server-rendered into the initial
+ * HTML for crawlers and AI engines); the LoadingScreen is a self-dismissing
+ * overlay on top, not a gate.
  */
 export const HomePageClient = () => {
   return (
@@ -54,41 +65,53 @@ export const HomePageClient = () => {
           gap: "80px",
         }}
       >
-        {/* A */}
+        {/* 1 · Hero — A */}
         <HeroSection />
         <SectionDivider />
 
-        {/* B */}
+        {/* 2 · Stack strip — B */}
         <div style={{ background: "#07050f" }}>
-          <TrustSection />
+          <StackSection />
         </div>
         <SectionDivider flip />
 
-        {/* A */}
+        {/* 3 · The offer — A. The one section that reads heavier than its neighbours. */}
         <div style={{ background: "#080808" }}>
-          <ProcessSection />
+          <OfferSection />
         </div>
         <SectionDivider />
 
-        {/* A */}
+        {/* 4 · Selected work — A */}
         <div style={{ background: "#080808" }}>
           <PortfolioSection />
         </div>
         <SectionDivider />
 
-        {/* B */}
+        {/* 5 · Process, in days — B */}
         <div style={{ background: "#07050f" }}>
-          <TestimonialsSection />
+          <ProcessSection />
         </div>
         <SectionDivider flip />
 
-        {/* A */}
+        {/* 6 · Fit / not fit — A */}
+        <div style={{ background: "#080808" }}>
+          <FitSection />
+        </div>
+        <SectionDivider />
+
+        {/* 7 · Founder — B */}
+        <div style={{ background: "#07050f" }}>
+          <FounderSection />
+        </div>
+        <SectionDivider flip />
+
+        {/* 8 · FAQ — A */}
         <div style={{ background: "#080808" }}>
           <FAQSection />
         </div>
         <SectionDivider />
 
-        {/* A */}
+        {/* 9 · Close — A */}
         <div style={{ background: "#080808" }}>
           <CalendlySection />
         </div>
