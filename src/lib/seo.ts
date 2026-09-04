@@ -190,7 +190,7 @@ export const SERVICES: { name: string; description: string }[] = [
   {
     name: "White-Label Development for Design Studios",
     description:
-      "Build capacity for brand and identity studios whose clients need software: authentication, admin dashboards, client portals, backends behind an existing design, AI features, and migrations off no-code platforms — delivered under the studio's brand, with a standing commitment never to contact their client.",
+      "Build capacity for brand and identity studios whose clients need software: authentication, admin dashboards, client portals, iOS and Android apps, backends behind an existing design, AI features, and migrations off no-code platforms — delivered under the studio's brand, with a standing commitment never to contact their client.",
   },
   {
     name: "Premium Web Experiences",

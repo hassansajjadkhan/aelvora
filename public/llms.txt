@@ -10,7 +10,7 @@ Fixed price, fixed timeline. If the build goes over 21 days, the client does not
 
 Included: a deployed working application on the client's domain; full source code in the client's own repository with no lock-in; authentication and user accounts; one AI feature running in production (LLM, RAG, or agent); payments and billing integration; 30 days of post-launch support.
 
-Explicitly not included: SOC 2 or HIPAA compliance work; native mobile apps; ongoing feature development, which is a separate retainer.
+Explicitly not included: SOC 2 or HIPAA compliance work; ongoing feature development, which is a separate retainer.
 
 Process, in days: Scope on days 1–3 (technical brief, user flows, architecture decision, signed off before anything is built). Design on days 4–7 (a clickable prototype of the core flow, not a mockup). Build on days 8–18 (a working demo every three days, staging from day 8). Launch on days 19–21 (production deploy, analytics, handover).
 
@@ -24,7 +24,7 @@ How it works: delivered white-label under the studio's brand; the studio owns th
 
 Non-compete commitment: Aelvora never contacts a partner studio's client — not during the project, not after it, for any reason. No pitch, no follow-up, no named case study without written permission. This is in the contract.
 
-What gets built for studios: authentication and user accounts; admin dashboards and client portals; backends and APIs behind an existing design; AI and LLM features; third-party integrations; migrations off no-code platforms that have hit a ceiling. Designs are built faithfully from Figma — Aelvora does not redesign a studio's work.
+What gets built for studios: authentication and user accounts; admin dashboards and client portals; iOS and Android apps; backends and APIs behind an existing design; AI and LLM features; third-party integrations; migrations off no-code platforms that have hit a ceiling. Designs are built faithfully from Figma — Aelvora does not redesign a studio's work.
 
 Engagement flow: the studio sends a brief; Aelvora scopes and quotes within 48 hours; the studio quotes their client; Aelvora builds with demos every three days; Aelvora hands over and the studio delivers.
 

@@ -15,7 +15,21 @@ export const Globe = () => {
   const tiltGroup = useRef<THREE.Group>(null); // reacts to mouse
   const earthRef = useRef<THREE.Mesh>(null); // continuous spin
 
-  const [dayMap, nightMap] = useTexture(["/earth-day.jpg", "/earth-night.png"]);
+  /*
+   * WebP, not JPG/PNG. These two textures are the heaviest thing above the fold
+   * on the homepage — they are loaded raw by three.js, so `next/image` never
+   * touches them and none of the usual optimisation applies. Re-encoded at the
+   * same 2048x1024 they went from 1.2 MB to 309 KB, which is ~909 KB off the
+   * critical path for every first-time visitor.
+   *
+   * The originals are kept in /public so this is a one-line revert if the
+   * globe ever looks wrong. Browser support is a non-issue: Next 16 already
+   * targets Chrome/Edge/Firefox 111+ and Safari 16.4+, all of which decode WebP.
+   */
+  const [dayMap, nightMap] = useTexture([
+    "/earth-day.webp",
+    "/earth-night.webp",
+  ]);
 
   // Texture tuning
   useMemo(() => {

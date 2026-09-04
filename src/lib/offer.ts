@@ -39,10 +39,18 @@ export const OFFER_INCLUDES: string[] = [
 /**
  * What is out of scope. The spec is emphatic: these exclusions are the
  * strongest credibility signal on the page. Do not soften them.
+ *
+ * ⚠️ "Native mobile apps" was here, taken verbatim from spec v2 §5.2 §3. It was
+ * WRONG — Aelvora does build mobile apps, and thirteen studios were pitched on
+ * exactly that. A studio replying about an app was being told no by this list
+ * before anyone read the email. Removed.
+ *
+ * Anything added here must be something we genuinely will not do. An exclusion
+ * that contradicts live outreach is worse than no exclusion at all: it loses
+ * the deal silently, before a conversation starts.
  */
 export const OFFER_EXCLUDES: string[] = [
   "SOC 2 / HIPAA compliance work",
-  "Native mobile apps",
   "Ongoing feature development (separate retainer)",
 ];
 
@@ -101,11 +109,20 @@ export const FIT_YES: string[] = [
   "Your product needs AI at its core",
 ];
 
+/**
+ * ⚠️ "You need native iOS and Android" was here, from spec v2 §6, and was the
+ * same mistake as the excluded mobile apps above — see `OFFER_EXCLUDES`.
+ *
+ * Replaced with a disqualifier that is actually true: the 21-day build produces
+ * a first working version, and someone whose real need is a standing dev team
+ * wants the retainer, not this. That one is supported by `OFFER_EXCLUDES`
+ * rather than invented to keep the columns even.
+ */
 export const FIT_NO: string[] = [
   "You need SOC 2 or HIPAA on day one",
   "Your scope needs a committee",
   "You want a spec locked for 6 months",
-  "You need native iOS and Android",
+  "You need an ongoing dev team more than a first version",
 ];
 
 /**

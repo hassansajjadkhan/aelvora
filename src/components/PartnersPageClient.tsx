@@ -15,6 +15,7 @@ import {
   Server,
   BrainCircuit,
   Plug,
+  Smartphone,
   ArrowUpRight,
   Calendar,
 } from "lucide-react";
@@ -68,9 +69,15 @@ const HOW_IT_WORKS = [
   },
 ];
 
+/**
+ * Mobile apps belong on this list. Thirteen studios were pitched on exactly
+ * that capability, and the page they were pointed at did not mention it — a
+ * silent no to the thing that brought them here.
+ */
 const WHAT_WE_BUILD = [
   { icon: KeyRound, label: "Authentication and user accounts" },
   { icon: LayoutDashboard, label: "Admin dashboards and client portals" },
+  { icon: Smartphone, label: "iOS and Android apps" },
   { icon: Server, label: "Backends and APIs behind an existing design" },
   { icon: BrainCircuit, label: "AI and LLM features" },
   { icon: Plug, label: "Third-party integrations" },

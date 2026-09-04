@@ -34,7 +34,7 @@ const serviceJsonLd = {
   name: "White-Label Development for Design Studios",
   serviceType: "White-label software development",
   description:
-    "Build capacity for brand and identity studios whose clients need software. Authentication, admin dashboards and client portals, backends and APIs behind an existing design, AI and LLM features, third-party integrations, and migrations off no-code platforms — delivered white-label under the studio's brand, at a fixed price the studio marks up, with a standing commitment never to contact the studio's client.",
+    "Build capacity for brand and identity studios whose clients need software. Authentication, admin dashboards and client portals, iOS and Android apps, backends and APIs behind an existing design, AI and LLM features, third-party integrations, and migrations off no-code platforms — delivered white-label under the studio's brand, at a fixed price the studio marks up, with a standing commitment never to contact the studio's client.",
   provider: { "@id": `${SITE_URL}/#organization` },
   url: `${SITE_URL}/partners`,
   audience: {
@@ -61,6 +61,7 @@ const serviceJsonLd = {
     itemListElement: [
       "Authentication and user accounts",
       "Admin dashboards and client portals",
+      "iOS and Android apps",
       "Backends and APIs behind an existing design",
       "AI and LLM features",
       "Third-party integrations",
