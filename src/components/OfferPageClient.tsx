@@ -7,7 +7,6 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { NoiseOverlay } from "@/components/NoiseOverlay";
 import { ProjectForm } from "@/components/ProjectForm";
-import { OwnerSupply } from "@/components/OwnerSupply";
 import { listenForCalendlyBooking } from "@/lib/analytics";
 import { CALENDLY_FOUNDER_URL, CONTACT_EMAIL } from "@/lib/seo";
 import {
@@ -188,8 +187,9 @@ export const OfferPageClient = () => {
               </span>
             </h1>
 
-            <div style={{ marginBottom: "26px" }}>
-              {OFFER_PRICE ? (
+            {/* No price set → omit it rather than render a placeholder. */}
+            {OFFER_PRICE && (
+              <div style={{ marginBottom: "26px" }}>
                 <p
                   className="font-display font-bold"
                   style={{
@@ -200,16 +200,31 @@ export const OfferPageClient = () => {
                 >
                   {OFFER_PRICE}
                 </p>
-              ) : (
-                <OwnerSupply what="fixed price for the 21-day MVP" block />
-              )}
-            </div>
+              </div>
+            )}
 
+            {/*
+              The lede changes with the price. Claiming the page tells you "what
+              it costs" while the number is missing is a promise the page breaks
+              in its own first paragraph.
+            */}
             <Body>
-              One fixed price, one fixed timeline, and a working product deployed
-              on your domain at the end of it. Everything below is what you get,
-              what you don&apos;t, and what it costs — so you can decide without
-              speaking to anyone first.
+              {OFFER_PRICE ? (
+                <>
+                  One fixed price, one fixed timeline, and a working product
+                  deployed on your domain at the end of it. Everything below is
+                  what you get, what you don&apos;t, and what it costs — so you
+                  can decide without speaking to anyone first.
+                </>
+              ) : (
+                <>
+                  One fixed price, one fixed timeline, and a working product
+                  deployed on your domain at the end of it. Everything below is
+                  what you get, what you don&apos;t, and how the engagement runs.
+                  Send a line about what you&apos;re building and you&apos;ll
+                  have a number back within 48 hours.
+                </>
+              )}
             </Body>
 
             <div style={{ marginTop: "32px" }}>
